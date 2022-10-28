@@ -114,7 +114,9 @@ begin
                     end if;
 
                 when digitZero => 
+                    -- calculates the values on the rising edge of clk_output
                     onePos := totalVal mod 10;
+                    -- what to display on the segment
                     case onePos is
                         when 0 => segmentDisplay <= "1000000";
                         when 1 => segmentDisplay <= "1111001";
@@ -128,8 +130,9 @@ begin
                         when 9 => segmentDisplay <= "0010000";
                         when others => segmentDisplay <= "0000000";
                     end case;
-                    --segmentDisplay <= interSeg;
+                    -- dp is the decimal point (1) means that it is off
                     dp <= '1';
+                    -- the position of the LED that is turned on (0) means that it is displaying segmentDisplay on that LED position
                     an <= "1110";
                     if clk = '1' then
                         State <= digitOne;
