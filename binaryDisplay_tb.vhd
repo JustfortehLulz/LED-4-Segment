@@ -73,7 +73,10 @@ begin
         
         reset <= '0';
 
-        SW <= (others => '0');
+        -- SW <= (others => '0');
+        -- test with SW = 1
+        SW(12 downto 1) <= (others => '0');
+        SW(0) <= '1';
         
         -- test different SW positions starting with all 0 
         -- test for each of the 4 cycles
@@ -119,9 +122,9 @@ begin
         
         wait for 100000*clk_period;
         
-        -- test with SW = 1
-        SW(12 downto 1) <= (others => '0');
-        SW(0) <= '1';
+        -- test with SW = 3
+        SW(12 downto 2) <= (others => '0');
+        SW(1 downto 0) <= (others => '1');
         
         test_segment := "1111001";
         if segmentDisplay /= test_segment then
@@ -172,6 +175,8 @@ begin
         
         wait for 100000*clk_period;
         
+        wait for 400000*clk_period;
+
         -- test reset
         reset <= '1';
         report "SUCCESS";

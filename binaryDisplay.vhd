@@ -50,16 +50,11 @@ architecture Behavioral of binaryDisplay is
     -- the decmial value of a given binary value
     signal totalVal : integer range 0 to 8192 := 0;
 
-    -- the decmial value of a given binary value
-    signal intertotalVal : integer range 0 to 8192 := 0;
-    
-    --intermediate signal of the segmentDisplay
-    signal interSeg : std_logic_vector(6 downto 0);
     -- output clock after prescaler
     signal clk_output : std_logic := '0';
     
     -- states of the state machine
-    type t_state is (intialStart,digitZero,digitOne,digitTwo,digitThree);
+    type t_state is (resetState,digitZero,digitOne,digitTwo,digitThree);
     signal State : t_state;
 
     
@@ -80,134 +75,132 @@ begin
 
     -- drives what the values of each LED segment should be
     -- converts the SW to an integer which is then translated into the segment display for each light
-    Process(clk,reset,SW)
-            -- variables containing the numerical positions 
-            variable onePos : integer range 0 to 9 := 0;
-            variable tenPos : integer range 0 to 9 := 0;
-            variable hundredPos : integer range 0 to 9 := 0;
-            variable thousandPos : integer range 0 to 9 := 0;
-            -- intermediate steps
-            variable interTen : integer := 0;
-            variable interHundred : integer := 0;
-    begin
-        if reset = '1' then
-            totalVal <= 2000;
-            interSeg <= "0000000";
-            segmentDisplay <= "0000000";
-            an <= "0000";
-            dp <= '1';
-        elsif rising_edge(clk) then
+   Process(clk,reset,SW)
+
+   begin
+       if reset = '1' then
+           totalVal <= 0;
+           
+       elsif rising_edge(clk) then
             totalVal <= to_integer(unsigned(SW));
-            if State = digitZero then
-                onePos := totalVal mod 10;
-                case onePos is
-                    when 0 => interSeg <= "1000000";
-                    when 1 => interSeg <= "1111001";
-                    when 2 => interSeg <= "0100100";
-                    when 3 => interSeg <= "0110000";
-                    when 4 => interSeg <= "0011001";
-                    when 5 => interSeg <= "0010010";
-                    when 6 => interSeg <= "0000010";
-                    when 7 => interSeg <= "1111000";
-                    when 8 => interSeg <= "0000000";
-                    when 9 => interSeg <= "0010000";
-                    when others => interSeg <= "0000000";
-                end case;
-                dp <= '1';
-                an <= "1110";
-                segmentDisplay <= interSeg;
-            elsif State = digitOne then
-                interTen := totalVal mod 100;
-                tenPos := (interTen - onePos) / 10;
-                case tenPos is
-                    when 0 => interSeg <= "1000000";
-                    when 1 => interSeg <= "1111001";
-                    when 2 => interSeg <= "0100100";
-                    when 3 => interSeg <= "0110000";
-                    when 4 => interSeg <= "0011001";
-                    when 5 => interSeg <= "0010010";
-                    when 6 => interSeg <= "0000010";
-                    when 7 => interSeg <= "1111000";
-                    when 8 => interSeg <= "0000000";
-                    when 9 => interSeg <= "0010000";
-                    when others => interSeg <= "0000000";
-                    end case;
-                dp <= '1';
-                an <= "1101";
-                segmentDisplay <= interSeg;
-            elsif State = digitTwo then
-                interHundred := totalVal mod 1000;
-                hundredPos := (interHundred - interTen) / 100;
-                case hundredPos is
-                    when 0 => interSeg <= "1000000";
-                    when 1 => interSeg <= "1111001";
-                    when 2 => interSeg <= "0100100";
-                    when 3 => interSeg <= "0110000";
-                    when 4 => interSeg <= "0011001";
-                    when 5 => interSeg <= "0010010";
-                    when 6 => interSeg <= "0000010";
-                    when 7 => interSeg <= "1111000";
-                    when 8 => interSeg <= "0000000";
-                    when 9 => interSeg <= "0010000";
-                    when others => interSeg <= "0000000";
-                end case;
-                dp <= '1';
-                an <= "1011";
-                segmentDisplay <= interSeg;
-            elsif State = digitThree then
-                thousandPos := (totalVal - interHundred) / 1000;
-                case thousandPos is
-                    when 0 => interSeg <= "1000000";
-                    when 1 => interSeg <= "1111001";
-                    when 2 => interSeg <= "0100100";
-                    when 3 => interSeg <= "0110000";
-                    when 4 => interSeg <= "0011001";
-                    when 5 => interSeg <= "0010010";
-                    when 6 => interSeg <= "0000010";
-                    when 7 => interSeg <= "1111000";
-                    when 8 => interSeg <= "0000000";
-                    when 9 => interSeg <= "0010000";
-                    when others => interSeg <= "0000000";
-                end case;
-                dp <= '1'; 
-                an <= "0111";
-                segmentDisplay <= interSeg;
-            end if;
-        end if;
-    end process;
+       end if;
+   end process;
 
     -- deals with the timing of 4 segment display
-    Process(clk_output,reset)
-
+    Process(clk,clk_output,reset,SW)
+        -- variables containing the numerical positions 
+        variable onePos : integer range 0 to 9 := 0;
+        variable tenPos : integer range 0 to 9 := 0;
+        variable hundredPos : integer range 0 to 9 := 0;
+        variable thousandPos : integer range 0 to 9 := 0;
+        -- intermediate steps
+        variable interTen : integer := 0;
+        variable interHundred : integer := 0;
     Begin
         if reset = '1' then
-            State <= intialStart;
- 
+            State <= resetState;
+            dp <= '0';
+            an <= "0000";
+            -- totalVal <= 0;
         elsif rising_edge(clk_output) then
-            
+                
             case State is 
-                
-                when intialStart =>
-                    if clk_output = '1' then
-                        State  <= digitZero;
+                when resetState =>
+                    -- code is run below when the rising edge of clk_output is triggered
+                    an <= "1010";
+                    
+                    if clk = '1' then
+                        State <= digitZero;
                     end if;
-                
+
                 when digitZero => 
-                    if clk_output = '1' then
+                    onePos := totalVal mod 10;
+                    case onePos is
+                        when 0 => segmentDisplay <= "1000000";
+                        when 1 => segmentDisplay <= "1111001";
+                        when 2 => segmentDisplay <= "0100100";
+                        when 3 => segmentDisplay <= "0110000";
+                        when 4 => segmentDisplay <= "0011001";
+                        when 5 => segmentDisplay <= "0010010";
+                        when 6 => segmentDisplay <= "0000010";
+                        when 7 => segmentDisplay <= "1111000";
+                        when 8 => segmentDisplay <= "0000000";
+                        when 9 => segmentDisplay <= "0010000";
+                        when others => segmentDisplay <= "0000000";
+                    end case;
+                    --segmentDisplay <= interSeg;
+                    dp <= '1';
+                    an <= "1110";
+                    if clk = '1' then
                         State <= digitOne;
                     end if;
                     
                 when digitOne => 
-                    if clk_output = '1' then
+                    interTen := totalVal mod 100;
+                    tenPos := (interTen - onePos) / 10;
+                    case tenPos is
+                        when 0 => segmentDisplay <= "1000000";
+                        when 1 => segmentDisplay <= "1111001";
+                        when 2 => segmentDisplay <= "0100100";
+                        when 3 => segmentDisplay <= "0110000";
+                        when 4 => segmentDisplay <= "0011001";
+                        when 5 => segmentDisplay <= "0010010";
+                        when 6 => segmentDisplay <= "0000010";
+                        when 7 => segmentDisplay <= "1111000";
+                        when 8 => segmentDisplay <= "0000000";
+                        when 9 => segmentDisplay <= "0010000";
+                        when others => segmentDisplay <= "0000000";
+                    end case;
+                        -- segmentDisplay <= interSeg;
+                        dp <= '1';
+                        an <= "1101";
+                    
+                    if clk = '1' then
                         State <= digitTwo;
                     end if;
                     
-               when digitTwo => 
-                    if clk_output = '1' then
+                when digitTwo => 
+                    interHundred := totalVal mod 1000;
+                    hundredPos := (interHundred - interTen) / 100;
+                    case hundredPos is
+                        when 0 => segmentDisplay <= "1000000";
+                        when 1 => segmentDisplay <= "1111001";
+                        when 2 => segmentDisplay <= "0100100";
+                        when 3 => segmentDisplay <= "0110000";
+                        when 4 => segmentDisplay <= "0011001";
+                        when 5 => segmentDisplay <= "0010010";
+                        when 6 => segmentDisplay <= "0000010";
+                        when 7 => segmentDisplay <= "1111000";
+                        when 8 => segmentDisplay <= "0000000";
+                        when 9 => segmentDisplay <= "0010000";
+                        when others => segmentDisplay <= "0000000";
+                    end case;
+                        -- segmentDisplay <= interSeg;                  
+                        dp <= '1';
+                        an <= "1011";
+                    
+                    if clk = '1' then
                         State <= digitThree;
                     end if;
-              when digitThree => 
-                    if clk_output = '1' then
+                when digitThree => 
+                    thousandPos := (totalVal - interHundred) / 1000;
+                    case thousandPos is
+                        when 0 => segmentDisplay <= "1000000";
+                        when 1 => segmentDisplay <= "1111001";
+                        when 2 => segmentDisplay <= "0100100";
+                        when 3 => segmentDisplay <= "0110000";
+                        when 4 => segmentDisplay <= "0011001";
+                        when 5 => segmentDisplay <= "0010010";
+                        when 6 => segmentDisplay <= "0000010";
+                        when 7 => segmentDisplay <= "1111000";
+                        when 8 => segmentDisplay <= "0000000";
+                        when 9 => segmentDisplay <= "0010000";
+                        when others => segmentDisplay <= "0000000";
+                    end case;
+                        -- segmentDisplay <= interSeg;
+                        dp <= '1'; 
+                        an <= "0111";
+                    if clk = '1' then
                         State <= digitZero;
                     end if;
              end case;
@@ -216,4 +209,3 @@ begin
     
     
 end Behavioral;
-

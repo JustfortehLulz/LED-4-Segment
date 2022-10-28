@@ -1,0 +1,176 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dD:/SFU/SFU 2022/ENSC 462/Modelsim Simulation/Lab5
+Ebinarydisplay
+Z0 w1666923439
+Z1 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z4 dC:/Users/Johnston/Documents/VIVADOSTUFF/_ModelSim
+Z5 8C:\Users\Johnston\Documents\VIVADOSTUFF\_ModelSim\binaryDisplay.vhd
+Z6 FC:\Users\Johnston\Documents\VIVADOSTUFF\_ModelSim\binaryDisplay.vhd
+l0
+L35
+Vb<kebZ`NQf:ClkhSn3HIa1
+!s100 LeV_:fL60m;[=0B2RCdT;2
+Z7 OV;C;10.5b;63
+33
+Z8 !s110 1666923728
+!i10b 1
+Z9 !s108 1666923728.000000
+Z10 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|C:\Users\Johnston\Documents\VIVADOSTUFF\_ModelSim\binaryDisplay.vhd|
+Z11 !s107 C:\Users\Johnston\Documents\VIVADOSTUFF\_ModelSim\binaryDisplay.vhd|
+!i113 1
+Z12 o-work work -2008 -explicit
+Z13 tExplicit 1 CvgOpt 0
+Abehavioral
+Z14 DEx4 work 9 prescaler 0 22 53d<AoLoVBV0K[mCEBkP]1
+R1
+R2
+R3
+Z15 DEx4 work 13 binarydisplay 0 22 b<kebZ`NQf:ClkhSn3HIa1
+l61
+L43
+VzelR9c8c^XW4IU9BoaZlh0
+!s100 0d9;afKH1[E93<>fn7P5e0
+R7
+33
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Ebinarydisplay_tb
+Z16 w1666921356
+R1
+R2
+R3
+R4
+Z17 8C:/Users/Johnston/Documents/VIVADOSTUFF/_ModelSim/binaryDisplay_tb.vhd
+Z18 FC:/Users/Johnston/Documents/VIVADOSTUFF/_ModelSim/binaryDisplay_tb.vhd
+l0
+L35
+V?_lbDFdB>Qe>[l8=bbA3X3
+!s100 zIa6AD^2W?CfdbTMUh2F[1
+R7
+32
+R8
+!i10b 1
+R9
+Z19 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Johnston/Documents/VIVADOSTUFF/_ModelSim/binaryDisplay_tb.vhd|
+Z20 !s107 C:/Users/Johnston/Documents/VIVADOSTUFF/_ModelSim/binaryDisplay_tb.vhd|
+!i113 1
+Z21 o-work work -2002 -explicit
+R13
+Abehavioral
+R15
+R1
+R2
+R3
+Z22 DEx4 work 16 binarydisplay_tb 0 22 ?_lbDFdB>Qe>[l8=bbA3X3
+l54
+L39
+Z23 Vf6XQHdRlTzU8;6LjHBGR<3
+Z24 !s100 3l?[k]4PF<IdYi`2K^?^g1
+R7
+32
+R8
+!i10b 1
+R9
+R19
+R20
+!i113 1
+R21
+R13
+Eprescaler
+Z25 w1666400981
+R1
+R2
+R3
+R4
+Z26 8C:/Users/Johnston/Documents/VIVADOSTUFF/_ModelSim/prescaler.vhd
+Z27 FC:/Users/Johnston/Documents/VIVADOSTUFF/_ModelSim/prescaler.vhd
+l0
+L35
+V53d<AoLoVBV0K[mCEBkP]1
+!s100 2Hz@zFA;Y8b:FMmhehXm?1
+R7
+32
+R8
+!i10b 1
+R9
+Z28 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Johnston/Documents/VIVADOSTUFF/_ModelSim/prescaler.vhd|
+Z29 !s107 C:/Users/Johnston/Documents/VIVADOSTUFF/_ModelSim/prescaler.vhd|
+!i113 1
+R21
+R13
+Abehavioral
+R1
+R2
+R3
+R14
+l49
+L47
+V7GUjV11j3QVR0UW6@50Ae3
+!s100 9X^`:bAkSCA;=3dH3El^C3
+R7
+32
+R8
+!i10b 1
+R9
+R28
+R29
+!i113 1
+R21
+R13
+Eprescaler_tb
+Z30 w1666457360
+R2
+R3
+R4
+Z31 8C:/Users/Johnston/Documents/VIVADOSTUFF/_ModelSim/prescaler_tb.vhd
+Z32 FC:/Users/Johnston/Documents/VIVADOSTUFF/_ModelSim/prescaler_tb.vhd
+l0
+L34
+VL^fe_9i4eM5GDCQE4zh1n3
+!s100 bR4QeIKNYAXEWc7<:Vj[W1
+R7
+32
+R8
+!i10b 1
+R9
+Z33 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Johnston/Documents/VIVADOSTUFF/_ModelSim/prescaler_tb.vhd|
+Z34 !s107 C:/Users/Johnston/Documents/VIVADOSTUFF/_ModelSim/prescaler_tb.vhd|
+!i113 1
+R21
+R13
+Abehavioral
+R1
+R14
+R2
+R3
+DEx4 work 12 prescaler_tb 0 22 L^fe_9i4eM5GDCQE4zh1n3
+l44
+L38
+VAY5]lNE[L@S<dUaOji7L:2
+!s100 L7:U?T:3A4X5mG^]`3DMI3
+R7
+32
+R8
+!i10b 1
+R9
+R33
+R34
+!i113 1
+R21
+R13

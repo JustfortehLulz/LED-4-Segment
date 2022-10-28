@@ -11,12 +11,14 @@ add wave -noupdate /binarydisplay_tb/DUT/interSeg
 add wave -noupdate /binarydisplay_tb/DUT/segmentDisplay
 add wave -noupdate /binarydisplay_tb/DUT/an
 add wave -noupdate /binarydisplay_tb/DUT/dp
-add wave -noupdate -expand -group Variables /binarydisplay_tb/DUT/line__90/onePos
-add wave -noupdate -expand -group Variables /binarydisplay_tb/DUT/line__90/tenPos
-add wave -noupdate -expand -group Variables /binarydisplay_tb/DUT/line__90/hundredPos
-add wave -noupdate -expand -group Variables /binarydisplay_tb/DUT/line__90/thousandPos
+add wave -noupdate -expand -group Variables /binarydisplay_tb/DUT/line__94/onePos
+add wave -noupdate -expand -group Variables /binarydisplay_tb/DUT/line__94/tenPos
+add wave -noupdate -expand -group Variables /binarydisplay_tb/DUT/line__94/hundredPos
+add wave -noupdate -expand -group Variables /binarydisplay_tb/DUT/line__94/thousandPos
+add wave -noupdate -expand -group Variables /binarydisplay_tb/DUT/line__94/interTen
+add wave -noupdate -expand -group Variables /binarydisplay_tb/DUT/line__94/interHundred
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {554263885 ps} 0}
+WaveRestoreCursors {{Cursor 1} {518272724 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 100
